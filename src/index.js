@@ -3,11 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "jquery/dist/jquery.min.js";
+
+//Set up redux
+//Tạo ra cái store trước
+import { createStore } from "redux";
+//Connect giữa 2 thằng với nhau
+import { Provider } from "react-redux";
+import rootReducer from "./redux";
+
+//Này tạo ra cái màu cam và nhận tham số ra cục cam
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
-  <React.StrictMode>
+  //Connect với react-redux
+  //truyền cái props vào là store
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
